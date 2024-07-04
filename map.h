@@ -18,8 +18,24 @@
 class Map
 {
     public:
+        Map();
+        ~Map();
+
         double minX, maxX, minY, maxY;
-        // int m_layerCount;
+
+        void loadStyle(QString filePath);
+        void loadMap(QString layersDir);
+
+        QVector<QString> getLayersNames() const;
+
+        QVector<iPoint>& getPointLayers();
+        QVector<iLine>& getLineLayers();
+        QVector<iPolygon>& getPolygonLayers();
+        QVector<iPolygon>& getBorderLayers();
+        QString getCurrentPath() const;
+        QString getLayersDir() const;
+
+    private:
         QString m_currentPath;
         QString m_layersDir;
 
@@ -30,15 +46,11 @@ class Map
         QVector<iPolygon> m_poligonLayers;
         QVector<iPolygon> m_borderLayers;
 
-        Map();
-        void loadStyle(QString filePath);
-        void loadMap(QString layersDir);
         void layaerDistribution(OGRLayer* ogrLayer, QString layerName);
         void loadPoint(OGRLayer* layer, const QString &name);
         void loadLine(OGRLayer* layer, const QString &name);
         void loadPolygon(OGRLayer* layer, const QString &name, bool isCovered);
-        void loadMultiPolygon(OGRLayer* layer, const QString &name, bool isCovered);
-        QVector<QString> getLayersNames();
+        void loadMultiPolygon(OGRLayer* layer, const QString &name, bool isCovered); 
 };
 
 #endif // MAP_H

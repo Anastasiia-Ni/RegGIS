@@ -13,7 +13,6 @@
 #include <ogrsf_frmts.h>
 
 
-
 // Dialog window for displaying layer data in a table.
 // This class represents a dialog window used to display layer data in a table format.
 

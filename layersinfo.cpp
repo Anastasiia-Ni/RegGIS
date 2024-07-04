@@ -2,6 +2,9 @@
 
 layersInfo::layersInfo() {}
 
+
+// Parses the provided JSON data to populate layer information such as color,
+// transparency, point size, and line width into layersStyles map.
 void layersInfo::setInfo(QByteArray &fileData) {
 
     QJsonDocument document = QJsonDocument::fromJson(fileData);
@@ -27,6 +30,9 @@ void layersInfo::setInfo(QByteArray &fileData) {
     }
 }
 
+
+// Searches the layersStyles map for information associated with
+// the specified layer name
 const lInfo layersInfo::getInfo(const QString &layerName) {
 
     auto it = layersStyles.find(layerName);

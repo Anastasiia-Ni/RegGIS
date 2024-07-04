@@ -45,7 +45,7 @@ class MyWidget : public QOpenGLWidget, protected QOpenGLFunctions
         void panRight();
         void panUp();
         void panDown();
-        void changeVisibility(QString layerName, bool status);
+        void changeVisibility(const QString &layerName, bool status);
 };
 
 #endif // MYWIDGET_H

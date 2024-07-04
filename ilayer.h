@@ -4,7 +4,7 @@
 #include <QVector>
 #include <QColor>
 
-// Structure representing a point with coordinates
+// Structure representing a point with coordinates.
 struct Point {
     double x;
     double y;
@@ -13,7 +13,7 @@ struct Point {
 };
 
 
-// Structure representing a layer of points
+// Structure representing a layer of points.
 struct iPoint {
     QVector<Point> points;
     QColor  color;
@@ -30,7 +30,7 @@ struct iPoint {
     }
 };
 
-// Structure representing a layer of lines
+// Structure representing a layer of lines.
 struct iLine {
     QVector<QVector<Point>> lines;
     QColor  color;
@@ -48,7 +48,7 @@ struct iLine {
 };
 
 
-// Structure representing a layer of polygons
+// Structure representing a layer of polygons.
 struct iPolygon {
     QVector<QVector<Point>> polygons;
     QColor  color;

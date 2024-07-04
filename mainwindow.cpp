@@ -110,10 +110,9 @@ void MainWindow::onLayerItemDoubleClicked(QListWidgetItem *item)
 {
     QString layerName = item->text();
     layerName.remove(" ");
-    QString fullPath = myOpenGLWidget->map->m_currentPath + myOpenGLWidget->map->m_layersDir;
+    QString fullPath = myOpenGLWidget->map->getCurrentPath() + myOpenGLWidget->map->getLayersDir();
     LayerDataWindow *layerDataWindow = new LayerDataWindow(fullPath, layerName, this);
     layerDataWindow->setAttribute(Qt::WA_DeleteOnClose);
     layerDataWindow->show();
 
 }
-

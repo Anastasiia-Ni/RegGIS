@@ -26,19 +26,21 @@ void MyWidget::resizeGL(int width,int height){
     glMatrixMode(GL_MODELVIEW);
 }
 
+
+// Renders all layers of the map using OpenGL, including polygons, lines, borders, and points.
 void MyWidget::paintGL(){
     glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
     glEnable(GL_POINT_SMOOTH);
 
-    for (int i = 0; i < map->m_poligonLayers.size(); i++) {
-        if (!map->m_poligonLayers[i].isVisible) continue;
+    // Render polygon layers
+    for (int i = 0; i < map->getPolygonLayers().size(); i++) {
+        if (!map->getPolygonLayers()[i].isVisible) continue;
 
-
-        QColor &color = map->m_poligonLayers[i].color;
+        const QColor &color = map->getPolygonLayers()[i].color;
         glColor4f(color.redF(), color.greenF(), color.blueF(), color.alphaF());
 
-        for (const auto &polygon : map->m_poligonLayers[i].polygons) {
-            if (map->m_poligonLayers[i].isMulti) {
+        for (const auto &polygon : map->getPolygonLayers()[i].polygons) {
+            if (map->getPolygonLayers()[i].isMulti) {
                 glEnable(GL_STENCIL_TEST);
                 glStencilOp(GL_KEEP, GL_KEEP, GL_INVERT);
             }
@@ -47,19 +49,19 @@ void MyWidget::paintGL(){
                 float normalizedX = (point.x - map->minX) / (map->maxX - map->minX) * 2 - 1;
                 float normalizedY = (point.y - map->minY) / (map->maxY - map->minY) * 2 - 1;
                 glVertex2f(normalizedX * zoomLevel + offsetX, normalizedY * zoomLevel + offsetY);
-
             }
             glEnd();
         }
     }
 
-    for (int i = 0; i < map->m_lineLayers.size(); i++) {
-        if (!map->m_lineLayers[i].isVisible) continue;
+    // Render line layers
+    for (int i = 0; i < map->getLineLayers().size(); i++) {
+        if (!map->getLineLayers()[i].isVisible) continue;
 
-        const auto& layer = map->m_lineLayers[i];
-        QColor &color = map->m_lineLayers[i].color;
+        const auto& layer = map->getLineLayers()[i];
+        const QColor &color = map->getLineLayers()[i].color;
         glColor4f(color.redF(), color.greenF(), color.blueF(), color.alphaF());
-        glLineWidth(map->m_lineLayers[i].lineWidth);
+        glLineWidth(map->getLineLayers()[i].lineWidth);
 
         for (const auto& line : layer.lines) {
             glBegin(GL_LINE_STRIP);
@@ -72,14 +74,15 @@ void MyWidget::paintGL(){
         }
     }
 
-    for (int i = 0; i < map->m_borderLayers.size(); i++) {
-        if (!map->m_borderLayers[i].isVisible) continue;
+    // Render border layers
+    for (int i = 0; i < map->getBorderLayers().size(); i++) {
+        if (!map->getBorderLayers()[i].isVisible) continue;
 
-        QColor &color = map->m_borderLayers[i].color;
+        const QColor &color = map->getBorderLayers()[i].color;
         glColor3f(color.red() / 255.0f, color.green() / 255.0f, color.blue() / 255.0f);
-        glLineWidth(map->m_borderLayers[i].lineWidth);
+        glLineWidth(map->getBorderLayers()[i].lineWidth);
 
-        for (const auto &polygon : map->m_borderLayers[i].polygons) {
+        for (const auto &polygon : map->getBorderLayers()[i].polygons) {
             glBegin(GL_LINE_STRIP);
             for (const auto &point : polygon) {
                 float normalizedX = (point.x - map->minX) / (map->maxX - map->minX) * 2 - 1;
@@ -91,15 +94,16 @@ void MyWidget::paintGL(){
         }
     }
 
-    for (int i = 0; i < map->m_pointLayers.size(); i++) {
-        if (!map->m_pointLayers[i].isVisible) continue;
+    // Render point layers
+    for (int i = 0; i < map->getPointLayers().size(); i++) {
+        if (!map->getPointLayers()[i].isVisible) continue;
 
-        QColor &color = map->m_pointLayers[i].color;
+        const QColor &color = map->getPointLayers()[i].color;
         glColor4f(color.redF(), color.greenF(), color.blueF(), color.alphaF());
-        glPointSize(map->m_pointLayers[i].pointSize);
+        glPointSize(map->getPointLayers()[i].pointSize);
 
         glBegin(GL_POINTS);
-        for (const auto &point : map->m_pointLayers[i].points) {
+        for (const auto &point : map->getPointLayers()[i].points) {
             float normalizedX = (point.x - map->minX) / (map->maxX - map->minX) * 2 - 1;
             float normalizedY = (point.y - map->minY) / (map->maxY - map->minY) * 2 - 1;
             glVertex2f(normalizedX * zoomLevel + offsetX, normalizedY * zoomLevel + offsetY);
@@ -111,8 +115,8 @@ void MyWidget::paintGL(){
 }
 
 
-void MyWidget::changeVisibility(QString layerName, bool status) {
-    for (auto& layer : map->m_pointLayers) {
+void MyWidget::changeVisibility(const QString &layerName, bool status) {
+    for (auto& layer : map->getPointLayers()) {
         if (layer.name == layerName) {
             layer.isVisible = status;
             update();
@@ -120,7 +124,7 @@ void MyWidget::changeVisibility(QString layerName, bool status) {
         }
     }
 
-    for (auto& layer : map->m_lineLayers) {
+    for (auto& layer : map->getLineLayers()) {
         if (layer.name == layerName) {
             layer.isVisible = status;
             update();
@@ -128,7 +132,7 @@ void MyWidget::changeVisibility(QString layerName, bool status) {
         }
     }
 
-    for (auto& layer : map->m_poligonLayers) {
+    for (auto& layer : map->getPolygonLayers()) {
         if (layer.name == layerName) {
             layer.isVisible = status;
             update();
@@ -136,14 +140,13 @@ void MyWidget::changeVisibility(QString layerName, bool status) {
         }
     }
 
-    for (auto& layer : map->m_borderLayers) {
+    for (auto& layer : map->getBorderLayers()) {
         if (layer.name == layerName) {
             layer.isVisible = status;
             update();
             return;
         }
     }
-
     qDebug() << "Layer with name" << layerName << "not found.";
 }
 
@@ -191,6 +194,7 @@ void MyWidget::panDown() {
     update();
 }
 
+
 void MyWidget::wheelEvent(QWheelEvent *event) {
     QPoint globalCursorPos = QCursor::pos();
     QPoint widgetCursorPos = mapFromGlobal(globalCursorPos);
@@ -213,6 +217,8 @@ void MyWidget::wheelEvent(QWheelEvent *event) {
     update();
 }
 
+// Handles the mouse press event for the left button.
+// Records the last mouse position and changes cursor to closed hand.
 void MyWidget::mousePressEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         dragging = true;
@@ -221,7 +227,8 @@ void MyWidget::mousePressEvent(QMouseEvent *event) {
     }
 }
 
-
+// Handles the mouse move event.
+// Calculates and updates mouse position change.
 void MyWidget::mouseMoveEvent(QMouseEvent *event) {
     if (dragging) {
         QPointF delta = event->pos() - lastMousePos;
@@ -237,6 +244,7 @@ void MyWidget::mouseMoveEvent(QMouseEvent *event) {
     }
 }
 
+// Restores the default cursor.
 void MyWidget::mouseReleaseEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         dragging = false;
@@ -244,6 +252,7 @@ void MyWidget::mouseReleaseEvent(QMouseEvent *event) {
     }
 }
 
+// Handles the mouse double click event: increasing the zoom level.
 void MyWidget::mouseDoubleClickEvent(QMouseEvent *event) {
     QPoint widgetCursorPos = event->pos();
 
@@ -259,6 +268,7 @@ void MyWidget::mouseDoubleClickEvent(QMouseEvent *event) {
     resizeGL(width(), height());
     update();
 }
+
 
 void MyWidget::keyPressEvent(QKeyEvent *event)
 {

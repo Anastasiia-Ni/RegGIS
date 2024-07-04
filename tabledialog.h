@@ -9,6 +9,9 @@
 #include <QFileInfo>
 #include <QString>
 
+// This class inherits QDialog and provides functionality to display a list of layers.
+// It allows navigation to another window for viewing layer tables.
+
 class TableDialog : public QDialog
 {
     Q_OBJECT
@@ -22,7 +25,6 @@ private:
     QListWidget *listWidget;
     QTableWidget *tableWidget;
 
-signals:
 };
 
 #endif // TABLEDIALOG_H

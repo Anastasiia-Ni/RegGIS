@@ -2,6 +2,9 @@
 #include "gdal_priv.h"
 #include "ogrsf_frmts.h"
 
+
+// Initializes the Map object with default values for map boundaries
+// and initializes the current path.
 Map::Map() {
     m_currentPath = QString(PROJECT_ROOT_DIR);
 
@@ -11,6 +14,34 @@ Map::Map() {
     maxY = 0.0f;
 }
 
+Map::~Map() {}
+
+QVector<iPoint>& Map::getPointLayers() {
+    return m_pointLayers;
+}
+
+QVector<iLine>& Map::getLineLayers() {
+    return m_lineLayers;
+}
+
+QVector<iPolygon>& Map::getPolygonLayers() {
+    return m_poligonLayers;
+}
+
+QVector<iPolygon>& Map::getBorderLayers() {
+    return m_borderLayers;
+}
+
+QString Map::getCurrentPath() const {
+    return m_currentPath;
+}
+
+QString Map::getLayersDir() const {
+    return m_layersDir;
+}
+
+// Loads layer styles (such as color, transparency, point size, line width) from
+// the specified JSON file into the layersStyle shared pointer.
 void Map::loadStyle(QString filePath) {
 
     QFile file(m_currentPath + filePath);
@@ -33,6 +64,8 @@ void Map::loadStyle(QString filePath) {
 
 }
 
+
+// Loads map layers from shapefiles in the specified directory.
 void Map::loadMap(QString layersDir){
     GDALAllRegister();
 
@@ -72,6 +105,9 @@ void Map::loadMap(QString layersDir){
 
 }
 
+
+// Distributes layers based on their geometry type.
+// If the layer name contains "border", only its outline will be drawn without filling the polygon.
 void Map::layaerDistribution(OGRLayer* ogrLayer, QString layerName) {
 
     OGRFeature* feature;
@@ -263,8 +299,8 @@ void Map::loadMultiPolygon(OGRLayer* layer, const QString &name, bool isCovered)
     }
 }
 
-
-QVector<QString> Map::getLayersNames() {
+// To get a list of all layers on the map.
+QVector<QString> Map::getLayersNames() const {
     QVector<QString> layersNames;
 
     for (iPoint layer: m_pointLayers) {
