@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>icons/zoom-in.png</file>
+        <file>icons/zoom-out.png</file>
+        <file>icons/zoom-region.png</file>
+        <file>icons/cross.jpeg</file>
+        <file>icons/table.png</file>
+    </qresource>
+    <qresource prefix="/list">
+        <file>add/Layers.json</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>880</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>96</y>
+      <width>740</width>
+      <height>500</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>801</width>
+      <height>500</height>
+     </size>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMap">
+    <property name="title">
+     <string>Map</string>
+    </property>
+    <addaction name="actionZoomIn"/>
+    <addaction name="actionZoomOut"/>
+    <addaction name="actionZoomFullExtent"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuTable">
+    <property name="title">
+     <string>Table</string>
+    </property>
+    <addaction name="actionOpenTable"/>
+   </widget>
+   <addaction name="menuMap"/>
+   <addaction name="menuTable"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionZoomIn"/>
+   <addaction name="actionZoomOut"/>
+   <addaction name="actionZoomFullExtent"/>
+   <addaction name="actionOpenTable"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QDockWidget" name="dockWidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>232</width>
+     <height>772</height>
+    </size>
+   </property>
+   <property name="mouseTracking">
+    <bool>true</bool>
+   </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <widget class="QScrollBar" name="verticalScrollBar">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>16</width>
+       <height>731</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>16</width>
+       <height>731</height>
+      </size>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="invertedAppearance">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>0</y>
+       <width>195</width>
+       <height>744</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelBorders">
+        <property name="text">
+         <string>Borders</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="checkBoxBordersRegion">
+        <property name="text">
+         <string>Region Border</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="checkBoxMunicipalBorders">
+        <property name="text">
+         <string>Municipal Borders</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QCheckBox" name="checkBoxMunicipalDistrictsBorders">
+        <property name="text">
+         <string>Municipal Districts Borders</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QCheckBox" name="checkBoxSettlementsBorders">
+        <property name="text">
+         <string>Settlements</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="labelHydrography">
+        <property name="text">
+         <string>Hydrography</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QCheckBox" name="checkBoxLakes">
+        <property name="text">
+         <string>Lakes</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QCheckBox" name="checkBoxRivers">
+        <property name="text">
+         <string>Rivers</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLabel" name="labelSocialInfrastructure">
+        <property name="text">
+         <string>Social infrastructure</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QCheckBox" name="checkBoxHealthcareFacilities">
+        <property name="text">
+         <string>Healthcare Facilities</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0">
+       <widget class="QCheckBox" name="checkBoxEducationalInstitutions">
+        <property name="text">
+         <string>Educational Institutions</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="0">
+       <widget class="QCheckBox" name="checkBoxSchools">
+        <property name="text">
+         <string>Schools</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="0">
+       <widget class="QCheckBox" name="checkBoxKindergartens">
+        <property name="text">
+         <string>Kindergartens</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="0">
+       <widget class="QLabel" name="labelTransportInfrastructure">
+        <property name="text">
+         <string>Transport infrastructure</string>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="0">
+       <widget class="QCheckBox" name="checkBoxAirports">
+        <property name="text">
+         <string>Airports</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="0">
+       <widget class="QCheckBox" name="checkBoxLandingSites">
+        <property name="text">
+         <string>Landing Sites</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="0">
+       <widget class="QCheckBox" name="checkBoxPortsPiers">
+        <property name="text">
+         <string>Ports and Piers</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="0">
+       <widget class="QCheckBox" name="checkBoxRoads">
+        <property name="text">
+         <string>Roads</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="18" column="0">
+       <widget class="QCheckBox" name="checkBoxRailways">
+        <property name="text">
+         <string>Railways</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="19" column="0">
+       <widget class="QCheckBox" name="checkBoxRailwayStations">
+        <property name="text">
+         <string>Railway Stations</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="20" column="0">
+       <widget class="QCheckBox" name="checkBoxBorderCheckpoints">
+        <property name="text">
+         <string>Border Checkpoints</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="21" column="0">
+       <widget class="QLabel" name="labelEngineering">
+        <property name="text">
+         <string>Engineering infrastructure</string>
+        </property>
+       </widget>
+      </item>
+      <item row="22" column="0">
+       <widget class="QCheckBox" name="checkBoxPowerLines">
+        <property name="text">
+         <string>Power Lines</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="23" column="0">
+       <widget class="QCheckBox" name="checkBoxElectricityGeneration">
+        <property name="text">
+         <string>Electricity Generation</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="24" column="0">
+       <widget class="QCheckBox" name="checkBoxElectricDistributionSubstations">
+        <property name="text">
+         <string>Electric Distribution Stations</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="25" column="0">
+       <widget class="QLabel" name="labelTourist">
+        <property name="text">
+         <string>Tourist infrastructure</string>
+        </property>
+       </widget>
+      </item>
+      <item row="26" column="0">
+       <widget class="QCheckBox" name="checkBoxNationalParksBorders">
+        <property name="text">
+         <string>National Parks</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="27" column="0">
+       <widget class="QCheckBox" name="checkBoxTouristRoutes">
+        <property name="text">
+         <string>Tourist Routes</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="28" column="0">
+       <widget class="QCheckBox" name="checkBoxMonuments">
+        <property name="text">
+         <string>Monuments</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="29" column="0">
+       <widget class="QCheckBox" name="checkBoxCampings">
+        <property name="text">
+         <string>Campings</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="30" column="0">
+       <widget class="QLabel" name="labelTOSED">
+        <property name="text">
+         <string>TOSED</string>
+        </property>
+       </widget>
+      </item>
+      <item row="31" column="0">
+       <widget class="QCheckBox" name="checkBoxLandPlotsOfTOSED">
+        <property name="text">
+         <string>Land Plots of TOSED</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="32" column="0">
+       <widget class="QCheckBox" name="checkBoxInvestmentProjects">
+        <property name="text">
+         <string>Investment Projects</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="33" column="0">
+       <widget class="QCheckBox" name="checkBoxAllowablePlacementZones">
+        <property name="text">
+         <string>Allowable Placement Zones</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+  </widget>
+  <action name="actionZoomIn">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/zoom-in.png</normaloff>:/icons/icons/zoom-in.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom In</string>
+   </property>
+  </action>
+  <action name="actionZoomOut">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/zoom-out.png</normaloff>:/icons/icons/zoom-out.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom Out</string>
+   </property>
+  </action>
+  <action name="actionZoomFullExtent">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/zoom-region.png</normaloff>:/icons/icons/zoom-region.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom Full</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/cross.jpeg</normaloff>:/icons/icons/cross.jpeg</iconset>
+   </property>
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionOpenTable">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/table.png</normaloff>:/icons/icons/table.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open Table</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
