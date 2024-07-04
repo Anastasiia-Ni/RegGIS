@@ -5,9 +5,3 @@ It utilizes Qt for its user interface components and OpenGL for rendering geogra
 The application supports reading and displaying various GIS data formats, 
 such as shapefiles, and allows users to interact with and analyze spatial data through intuitive graphical interfaces.
 Key features include map rendering, layer management, scaling.
-
-
-## TODO
-
-- скролл бар в dockWidget
-- закрепить окно со списком слоев
