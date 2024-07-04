@@ -28,4 +28,3 @@ QListWidget *TableDialog::getListWidget() const
 {
     return listWidget;
 }
-

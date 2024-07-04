@@ -295,4 +295,3 @@ void MyWidget::keyPressEvent(QKeyEvent *event)
         QOpenGLWidget::keyPressEvent(event);
     }
 }
-
