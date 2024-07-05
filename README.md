@@ -7,7 +7,7 @@ Key features include map rendering, layer management, scaling.
 
 
 <img src="https://github.com/Anastasiia-Ni/RegGIS/blob/main/img/map.png" width="600">
-<img src="https://github.com/Anastasiia-Ni/RegGIS/blob/main/img/TableRivers.png" width="600">
+<img src="https://github.com/Anastasiia-Ni/RegGIS/blob/main/img/TableRoads.png" width="600">
 
 
 ## Introduction
