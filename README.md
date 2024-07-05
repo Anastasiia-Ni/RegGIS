@@ -45,7 +45,7 @@ and provides capabilities to load and displayspatial data.
 - Zooming: Double-click to zoom in at the cursor position.
 - Layer Visibility: Toggle layer visibility using the layer list dialog.
 4. Opening Layer Tables:
-- Use the `Open Tabl` action from the `Table` menu or the toolbar to view the attribute table of the selected layer.
+- Use the `Open Table` action from the `Table` menu or the toolbar to select the layer's attribute table.
 
 <img src="https://github.com/Anastasiia-Ni/RegGIS/blob/main/img/TableDialog.png" width="300">
 
